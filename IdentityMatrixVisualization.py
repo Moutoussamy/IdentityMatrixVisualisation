@@ -57,13 +57,18 @@ def PlotClustalMatrix(ClustalMatrix):
 
     plt.imshow(ClustalMatrix, cmap="YlGnBu")
     cbar = plt.colorbar()
-    #cbar.set_label('Sequence Identity (%)', rotation=270)
+    cbar.set_label('Sequence Identity (%)')
+
+
     plt.xticks(range(len(ClustalMatrix)),ClustalMatrix.columns,rotation=80)
     plt.yticks(range(len(ClustalMatrix)),ClustalMatrix.index)
+
+
 
     plt.savefig("ClustalIDMatrix.png", dpi=300, papertype="a4", orientation="portrait", format="tiff",bbox_inches = 'tight')
 
 
 if __name__ == '__main__':
+
     ClustalMatrix =ReadClustalMatrix(sys.argv[1])
     PlotClustalMatrix(ClustalMatrix)
