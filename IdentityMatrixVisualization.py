@@ -65,7 +65,7 @@ def PlotClustalMatrix(ClustalMatrix):
 
 
 
-    plt.savefig("ClustalIDMatrix.png", dpi=300, papertype="a4", orientation="portrait", format="tiff",bbox_inches = 'tight')
+    plt.savefig("ClustalIDMatrix.png", dpi=150, papertype="a4", orientation="portrait", format="tiff",bbox_inches = 'tight')
 
 
 if __name__ == '__main__':
