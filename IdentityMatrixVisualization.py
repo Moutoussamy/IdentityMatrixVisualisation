@@ -33,11 +33,19 @@ def ReadClustalMatrix(ClustalOutput):
                     else:
                         seqID = np.vstack((seqID, identity))
 
+    print(np.amin(seqID))
+    print(np.amax(seqID))
+
     ClustalSeqID = pd.DataFrame(data=seqID, index=SeqNames, columns=SeqNames)
 
     return ClustalSeqID
 
 def PlotClustalMatrix(ClustalMatrix):
+    """
+    Plot the Clustal MAtrix as an heatmap
+    :param ClustalMatrix: matrix from ReadClustalMatrix function
+    :return: PLot the heatmap
+    """
 
     fig, ax = plt.subplots()
     plt.rcParams["xtick.labelsize"] = 14
@@ -46,15 +54,12 @@ def PlotClustalMatrix(ClustalMatrix):
     plt.rcParams["axes.labelsize"] = 16
 
     fig, ax = plt.subplots(1, 1,figsize=(25, 10), sharex='col', sharey='row', gridspec_kw={'hspace': 0, 'wspace': 0})
-    print(ClustalMatrix)
+
     plt.imshow(ClustalMatrix, cmap="YlGnBu")
     cbar = plt.colorbar()
-    cbar.set_label('Sequence Identity (%)', rotation=270)
-    plt.xticks(range(len(ClustalMatrix)),ClustalMatrix.columns)
+    #cbar.set_label('Sequence Identity (%)', rotation=270)
+    plt.xticks(range(len(ClustalMatrix)),ClustalMatrix.columns,rotation=80)
     plt.yticks(range(len(ClustalMatrix)),ClustalMatrix.index)
-    ang = r'($\AA$)'
-    plt.xlabel("Protein (COM)/Upper Phosphate Plane (COM) \n distance %s"%ang)
-    plt.ylabel('Residue')
 
     plt.savefig("ClustalIDMatrix.png", dpi=300, papertype="a4", orientation="portrait", format="tiff",bbox_inches = 'tight')
 
